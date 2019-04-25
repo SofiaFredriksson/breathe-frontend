@@ -1,12 +1,18 @@
 import React from 'react'
 
-const ActivityPage = (props) => {
+class ActivityPage extends React.Component {
+
+
+  render () {
+    console.log(this.props);
   return (
     <div>
-      <h1>{props.suggestedActivity.title}</h1>
-      <p>{props.suggestedActivity.description}</p>
+      <h1>{this.props.suggestedActivity.title}</h1>
+      <p>{this.props.suggestedActivity.description}</p>
+      <button onClick={this.props.handleDoneClick}>Done</button>
     </div>
   )
+}
 }
 
 export default ActivityPage

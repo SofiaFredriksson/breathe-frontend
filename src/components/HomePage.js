@@ -47,14 +47,12 @@ componentDidMount(){
     categories: data
   }))
 }
-//
-// randomActivity = (time) => {
-//   const activ = this.state.activities.filter(activity => activity.time === time)
-//   const num = Math.floor(Math.random() * activ.length)
-//   this.setState({
-//     suggestedActivity: activ
-//   })
-// }
+
+handleDoneClick = () => {
+  this.setState({
+    clicked: 'home'
+  })
+}
 
   renderContent = () => {
     switch(this.state.clicked) {
@@ -63,12 +61,12 @@ componentDidMount(){
       case 'category':
         return <TimeSelect selectedCategory={this.state.selectedCategory} handleTimeSelect={this.handleTimeSelect}/>;
       case 'activity':
-        return <ActivityPage suggestedActivity={this.state.suggestedActivity}/>
+        return <ActivityPage suggestedActivity={this.state.suggestedActivity} selectedTime={this.state.selectedTime} handleDoneClick={this.handleDoneClick}/>
       default:
         return null;
-
     }
   }
+
 
   render() {
 console.log(this.state.selectedCategory);
