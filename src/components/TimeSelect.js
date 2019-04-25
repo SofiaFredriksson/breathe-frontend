@@ -1,10 +1,10 @@
 import React from 'react'
 
 const TimeSelect = (props) => {
-  console.log('this is ' + props.selectedCategory);
+  console.log('this is ' + props.selectedCategory.name);
   return(
     <div>
-    <h1>{props.selectedCategory}</h1>
+    <h1>{props.selectedCategory.name}</h1>
     How much time do you have?
     <br/>
       <select onChange={(event) => props.handleTimeSelect(event)}>
@@ -15,7 +15,7 @@ const TimeSelect = (props) => {
         <option value="15">15 minutes</option>
         <option value="20">20 minutes</option>
         <option value="30">30 minutes</option>
-        <option value="40+">40 + minutes</option>
+        <option value="40">40 + minutes</option>
       </select>
 
     </div>
