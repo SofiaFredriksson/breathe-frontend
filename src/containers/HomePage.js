@@ -1,10 +1,12 @@
 import React from 'react'
+
 import TimeSelect from '../components/TimeSelect'
 import CategoryButtons from '../components/CategoryButtons'
 import ActivityPage from '../components/ActivityPage'
 import ReflectionForm from '../components/ReflectionForm'
 import ReflectionsPage from '../components/ReflectionsPage'
 import NavBar from './NavBar'
+import ActivityForm from '../components/ActivityForm'
 
 const ActivityAPI = 'http://localhost:3001/api/v1/activities'
 const CategoryAPI = 'http://localhost:3001/api/v1/categories'
@@ -78,9 +80,27 @@ handleReflectionSubmit = (event, body) => {
   })
 }
 
+handleActivitySubmit = (event, body) => {
+  event.preventDefault()
+  fetch(ActivityAPI, {
+  	method: 'POST',
+  	headers: {"Content-Type": "application/json"},
+  	body: JSON.stringify(body)
+  })
+  this.setState({
+    clicked: 'home'
+  })
+}
+
   handleReflectionClick = () => {
     this.setState({
       clicked: 'reflections'
+    })
+  }
+
+  handleNavClick = (value) => {
+    this.setState({
+      clicked: value
     })
   }
 
@@ -96,6 +116,8 @@ handleReflectionSubmit = (event, body) => {
         return <ReflectionForm suggestedActivity={this.state.suggestedActivity} currentUser={this.state.currentUser} handleReflectionSubmit={this.handleReflectionSubmit}/>;
       case 'reflections':
         return <ReflectionsPage currentUser={this.state.currentUser} activities={this.state.activities}/>
+      case 'newActivity':
+        return <ActivityForm categories={this.state.categories} handleActivitySubmit={this.handleActivitySubmit}/>
       default:
         return null;
     }
@@ -105,7 +127,7 @@ handleReflectionSubmit = (event, body) => {
   render() {
     return(
       <div>
-      <NavBar handleReflectionClick={this.handleReflectionClick}/>
+      <NavBar handleNavClick={this.handleNavClick} />
       {this.renderContent()}
       </div>
     )

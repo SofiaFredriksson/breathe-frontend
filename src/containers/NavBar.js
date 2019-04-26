@@ -7,20 +7,16 @@ class NavBar extends React.Component {
     return(
       <div className='navWrapper'>
 
-          <button onClick={this.props.handleReflectionClick}>
+          <button onClick={() => this.props.handleNavClick('home')}>
+          Breathe
+          </button>
+
+          <button onClick={() => this.props.handleNavClick('reflections')}>
           Reflections
           </button>
 
-          <button>
-          Breaths
-          </button>
-
-          <button>
+          <button onClick={() => this.props.handleNavClick('newActivity')}>
           New
-          </button>
-
-          <button>
-          Breathe
           </button>
 
           <button>
