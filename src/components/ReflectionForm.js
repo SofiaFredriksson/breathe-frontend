@@ -32,15 +32,16 @@ class ReflectionForm extends React.Component {
     <div>
     <h1>Activity: {this.props.suggestedActivity.title}</h1>
     <form className="reflectionForm" onSubmit={(event) => this.props.handleReflectionSubmit(event, this.state)}>
-    <br/>
-    <br/>
+    <br/><br/>
     <label>
     Reflect on your activity:
     <br/>
     <textarea value={this.state.content} name="content" onChange={this.handleChange} />
     </label>
+    <br/><br/>
     <label>
     Score your current mood:
+    <br/>
     <select name="score" onChange={this.handleScoreChange}>
       <option value="">Choose a score</option>
       <option value="1">1</option>
@@ -55,6 +56,7 @@ class ReflectionForm extends React.Component {
       <option value="10">10</option>
     </select>
     </label>
+    <br/><br/>
     <input type="submit" value="Submit" />
     </form>
     </div>
