@@ -9,7 +9,10 @@ const ReflectionsPage = (props) => {
       {props.currentUser.reflections.map(reflection =>
         {return(
         <div className="card" key={reflection.id}>
-        {reflection.content}
+        <h3>{props.activities.find(activity => activity.id === reflection.activity_id).title}</h3>
+        <p>{reflection.content}</p>
+        <br/>
+        <p>Mood score: {reflection.score}</p>
         </div>)}
       )}
     </div>

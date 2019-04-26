@@ -95,7 +95,7 @@ handleReflectionSubmit = (event, body) => {
       case 'form':
         return <ReflectionForm suggestedActivity={this.state.suggestedActivity} currentUser={this.state.currentUser} handleReflectionSubmit={this.handleReflectionSubmit}/>;
       case 'reflections':
-        return <ReflectionsPage currentUser={this.state.currentUser}/>
+        return <ReflectionsPage currentUser={this.state.currentUser} activities={this.state.activities}/>
       default:
         return null;
     }
