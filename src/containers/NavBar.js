@@ -7,7 +7,7 @@ class NavBar extends React.Component {
     return(
       <div className='navWrapper'>
 
-          <button>
+          <button onClick={this.props.handleReflectionClick}>
           Reflections
           </button>
 

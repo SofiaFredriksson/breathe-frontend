@@ -3,10 +3,13 @@ import TimeSelect from '../components/TimeSelect'
 import CategoryButtons from '../components/CategoryButtons'
 import ActivityPage from '../components/ActivityPage'
 import ReflectionForm from '../components/ReflectionForm'
+import ReflectionsPage from '../components/ReflectionsPage'
+import NavBar from './NavBar'
 
 const ActivityAPI = 'http://localhost:3001/api/v1/activities'
 const CategoryAPI = 'http://localhost:3001/api/v1/categories'
 const UserAPI = 'http://localhost:3001/api/v1/users/'
+const ReflectionsAPI = 'http://localhost:3001/api/v1/reflections'
 
 class HomePage extends React.Component {
   state = {
@@ -65,15 +68,21 @@ handleDoneClick = () => {
 
 handleReflectionSubmit = (event, body) => {
   event.preventDefault()
-  fetch('http://localhost:3001/api/v1/reflections', {
+  fetch(ReflectionsAPI, {
   	method: 'POST',
   	headers: {"Content-Type": "application/json"},
   	body: JSON.stringify(body)
   })
   this.setState({
-    clicked: 'home'
+    clicked: 'reflections'
   })
 }
+
+  handleReflectionClick = () => {
+    this.setState({
+      clicked: 'reflections'
+    })
+  }
 
   renderContent = () => {
     switch(this.state.clicked) {
@@ -85,6 +94,8 @@ handleReflectionSubmit = (event, body) => {
         return <ActivityPage suggestedActivity={this.state.suggestedActivity} selectedTime={this.state.selectedTime} handleDoneClick={this.handleDoneClick}/>
       case 'form':
         return <ReflectionForm suggestedActivity={this.state.suggestedActivity} currentUser={this.state.currentUser} handleReflectionSubmit={this.handleReflectionSubmit}/>;
+      case 'reflections':
+        return <ReflectionsPage currentUser={this.state.currentUser}/>
       default:
         return null;
     }
@@ -94,6 +105,7 @@ handleReflectionSubmit = (event, body) => {
   render() {
     return(
       <div>
+      <NavBar handleReflectionClick={this.handleReflectionClick}/>
       {this.renderContent()}
       </div>
     )

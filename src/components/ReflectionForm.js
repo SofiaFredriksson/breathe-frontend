@@ -1,7 +1,7 @@
 import React from 'react'
 import '../Form.css'
 
-const ReflectionsAPI = 'http://localhost:3001/api/v1/reflections'
+
 
 class ReflectionForm extends React.Component {
 
@@ -11,9 +11,6 @@ class ReflectionForm extends React.Component {
     user_id: this.props.currentUser.id,
     activity_id: this.props.suggestedActivity.id
   }
-
-
-
 
 
   handleChange = (event) => {
