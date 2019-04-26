@@ -63,6 +63,18 @@ handleDoneClick = () => {
   })
 }
 
+handleReflectionSubmit = (event, body) => {
+  event.preventDefault()
+  fetch('http://localhost:3001/api/v1/reflections', {
+  	method: 'POST',
+  	headers: {"Content-Type": "application/json"},
+  	body: JSON.stringify(body)
+  })
+  this.setState({
+    clicked: 'home'
+  })
+}
+
   renderContent = () => {
     switch(this.state.clicked) {
       case 'home':
@@ -72,7 +84,7 @@ handleDoneClick = () => {
       case 'activity':
         return <ActivityPage suggestedActivity={this.state.suggestedActivity} selectedTime={this.state.selectedTime} handleDoneClick={this.handleDoneClick}/>
       case 'form':
-        return <ReflectionForm suggestedActivity={this.state.suggestedActivity} currentUser={this.state.currentUser}/>;
+        return <ReflectionForm suggestedActivity={this.state.suggestedActivity} currentUser={this.state.currentUser} handleReflectionSubmit={this.handleReflectionSubmit}/>;
       default:
         return null;
     }
