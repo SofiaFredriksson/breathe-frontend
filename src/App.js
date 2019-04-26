@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import NavBar from './NavBar'
-import MainContainer from './MainContainer'
+import NavBar from './containers/NavBar'
+import MainContainer from './containers/MainContainer'
 
 const App = () => {
     return (

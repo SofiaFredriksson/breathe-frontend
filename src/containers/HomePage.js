@@ -1,10 +1,12 @@
 import React from 'react'
-import TimeSelect from './TimeSelect'
-import CategoryButtons from './CategoryButtons'
-import ActivityPage from './ActivityPage'
+import TimeSelect from '../components/TimeSelect'
+import CategoryButtons from '../components/CategoryButtons'
+import ActivityPage from '../components/ActivityPage'
+import ReflectionForm from '../components/ReflectionForm'
 
 const ActivityAPI = 'http://localhost:3001/api/v1/activities'
 const CategoryAPI = 'http://localhost:3001/api/v1/categories'
+const UserAPI = 'http://localhost:3001/api/v1/users/'
 
 class HomePage extends React.Component {
   state = {
@@ -13,7 +15,8 @@ class HomePage extends React.Component {
     clicked: 'home',
     activities: [],
     suggestedActivity: {},
-    categories: []
+    categories: [],
+    currentUser: {}
   }
 
 handleCategoryClick = (event) => {
@@ -46,11 +49,17 @@ componentDidMount(){
   .then(data => this.setState({
     categories: data
   }))
+
+  fetch(UserAPI + '1')
+  .then(resp => resp.json())
+  .then(data => this.setState({
+    currentUser: data
+  }))
 }
 
 handleDoneClick = () => {
   this.setState({
-    clicked: 'home'
+    clicked: 'form'
   })
 }
 
@@ -62,6 +71,8 @@ handleDoneClick = () => {
         return <TimeSelect selectedCategory={this.state.selectedCategory} handleTimeSelect={this.handleTimeSelect}/>;
       case 'activity':
         return <ActivityPage suggestedActivity={this.state.suggestedActivity} selectedTime={this.state.selectedTime} handleDoneClick={this.handleDoneClick}/>
+      case 'form':
+        return <ReflectionForm suggestedActivity={this.state.suggestedActivity} currentUser={this.state.currentUser}/>;
       default:
         return null;
     }
@@ -69,7 +80,6 @@ handleDoneClick = () => {
 
 
   render() {
-console.log(this.state.selectedCategory);
     return(
       <div>
       {this.renderContent()}
