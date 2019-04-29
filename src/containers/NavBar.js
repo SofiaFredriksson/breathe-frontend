@@ -19,8 +19,8 @@ class NavBar extends React.Component {
           New
           </button>
 
-          <button>
-          Login
+          <button onClick={() => this.props.handleNavClick('signUp')}>
+          Sign Up
           </button>
 
 

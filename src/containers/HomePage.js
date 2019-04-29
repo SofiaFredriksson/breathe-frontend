@@ -7,10 +7,11 @@ import ReflectionForm from '../components/ReflectionForm'
 import ReflectionsPage from '../components/ReflectionsPage'
 import NavBar from './NavBar'
 import ActivityForm from '../components/ActivityForm'
+import SignUpForm from '../components/SignUpForm'
 
 const ActivityAPI = 'http://localhost:3001/api/v1/activities'
 const CategoryAPI = 'http://localhost:3001/api/v1/categories'
-const UserAPI = 'http://localhost:3001/api/v1/users/'
+const UserAPI = 'http://localhost:3001/api/v1/users'
 const ReflectionsAPI = 'http://localhost:3001/api/v1/reflections'
 
 
@@ -40,7 +41,6 @@ handleTimeSelect = (event) => {
     clicked: 'activity',
     suggestedActivity: activ[num]
   })
-
 }
 
 componentDidMount(){
@@ -56,7 +56,7 @@ componentDidMount(){
     categories: data
   }))
 
-  fetch(UserAPI + '2')
+  fetch(UserAPI + '/2')
   .then(resp => resp.json())
   .then(data => this.setState({
     currentUser: data
@@ -71,7 +71,6 @@ handleDoneClick = () => {
 
 
 handleActivitySubmit = (event, body) => {
-  const self = this;
   event.preventDefault()
   fetch(ActivityAPI, {
   	method: 'POST',
@@ -79,7 +78,7 @@ handleActivitySubmit = (event, body) => {
   	body: JSON.stringify(body)
   })
   .then(resp => resp.json())
-  .then(data => self.setState({
+  .then(data => this.setState({
     clicked: 'home',
     activities: [...this.state.activities, data]
   }))
@@ -99,6 +98,20 @@ handleReflectionSubmit = (event, body) => {
       currentUser: {...this.state.currentUser,
         reflections: [...this.state.currentUser.reflections, data]}
     }))
+}
+
+handleSignupSubmit = (event, body) => {
+  event.preventDefault()
+  fetch(UserAPI, {
+    method: 'POST',
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(body)
+  })
+  .then(resp => resp.json())
+  .then(data => this.setState({
+    clicked: 'home'
+  }))
+
 }
 
   handleReflectionClick = () => {
@@ -127,6 +140,8 @@ handleReflectionSubmit = (event, body) => {
         return <ReflectionsPage currentUser={this.state.currentUser} activities={this.state.activities}/>
       case 'newActivity':
         return <ActivityForm categories={this.state.categories} handleActivitySubmit={this.handleActivitySubmit}/>
+      case 'signUp':
+        return <SignUpForm handleSignupSubmit={this.handleSignupSubmit}/>
       default:
         return null;
     }
