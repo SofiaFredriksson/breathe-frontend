@@ -13,6 +13,7 @@ const CategoryAPI = 'http://localhost:3001/api/v1/categories'
 const UserAPI = 'http://localhost:3001/api/v1/users/'
 const ReflectionsAPI = 'http://localhost:3001/api/v1/reflections'
 
+
 class HomePage extends React.Component {
   state = {
     selectedCategory: {},
@@ -55,7 +56,7 @@ componentDidMount(){
     categories: data
   }))
 
-  fetch(UserAPI + '1')
+  fetch(UserAPI + '2')
   .then(resp => resp.json())
   .then(data => this.setState({
     currentUser: data
@@ -68,28 +69,36 @@ handleDoneClick = () => {
   })
 }
 
-handleReflectionSubmit = (event, body) => {
-  event.preventDefault()
-  fetch(ReflectionsAPI, {
-  	method: 'POST',
-  	headers: {"Content-Type": "application/json"},
-  	body: JSON.stringify(body)
-  })
-  this.setState({
-    clicked: 'reflections'
-  })
-}
 
 handleActivitySubmit = (event, body) => {
+  const self = this;
   event.preventDefault()
   fetch(ActivityAPI, {
   	method: 'POST',
   	headers: {"Content-Type": "application/json"},
   	body: JSON.stringify(body)
   })
-  this.setState({
-    clicked: 'home'
+  .then(resp => resp.json())
+  .then(data => self.setState({
+    clicked: 'home',
+    activities: [...this.state.activities, data]
+  }))
+}
+
+handleReflectionSubmit = (event, body) => {
+  event.preventDefault()
+  fetch(ReflectionsAPI, {
+    method: 'POST',
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(body)
   })
+  .then(resp => resp.json())
+  .then(data =>
+    this.setState({
+      clicked: 'reflections',
+      currentUser: {...this.state.currentUser,
+        reflections: [...this.state.currentUser.reflections, data]}
+    }))
 }
 
   handleReflectionClick = () => {
@@ -125,6 +134,8 @@ handleActivitySubmit = (event, body) => {
 
 
   render() {
+    console.log(this.state.currentUser);
+    console.log(this.state.activities);
     return(
       <div>
       <NavBar handleNavClick={this.handleNavClick} />

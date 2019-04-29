@@ -1,14 +1,18 @@
 import React from 'react';
 import './App.css';
-import MainContainer from './containers/MainContainer'
+import HomePage from './containers/HomePage'
 
-const App = () => {
+
+class App extends React.Component {
+
+
+  render() {
     return (
       <div className="App">
-
-          <MainContainer />
+          <HomePage />
       </div>
-    );
+    )
+  }
 }
 
 export default App;
