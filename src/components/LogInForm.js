@@ -12,11 +12,12 @@ class LogInForm extends React.Component {
     })
   }
 
+
   render() {
     console.log(this.state);
     return (
     <div>
-      <form>
+      <form onSubmit={(event) => this.props.handleLoginSubmit(event, this.state)}>
         <label>
           Username:
           <br/>

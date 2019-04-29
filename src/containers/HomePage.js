@@ -41,11 +41,11 @@ componentDidMount(){
     categories: data
   }))
 
-  fetch(UserAPI + '/2')
-  .then(resp => resp.json())
-  .then(data => this.setState({
-    currentUser: data
-  }))
+  // fetch(UserAPI + '/1')
+  // .then(resp => resp.json())
+  // .then(data => this.setState({
+  //   currentUser: data
+  // }))
 }
  //click handler for 'done' with activity
 handleDoneClick = () => {
@@ -118,14 +118,38 @@ handleSignupSubmit = (event, body) => {
     body: JSON.stringify(body)
   })
   .then(resp => resp.json())
-  .then(data => this.setState({
-    clicked: 'home'
-  }))
+  .then(data => {
+    if(data.error){
+      alert(data.error)
+    }else{
+      this.setState({
+        currentUser: data,
+        clicked: 'home'
+      })
+    }
+  })
 }
 
-// handleLoginSubmit = (event, body) => {
-//
-// }
+
+handleLoginSubmit = (event, body) => {
+  event.preventDefault()
+  fetch('http://localhost:3001/api/v1/login', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(body)
+  })
+  .then(resp => resp.json())
+.then(data =>{
+    if(data.error){
+      alert(data.error)
+    }else{
+      this.setState({
+        currentUser: data,
+        clicked: 'home'
+      })
+    }
+  })
+}
 
 //conditionally render components
   renderContent = () => {
@@ -145,7 +169,7 @@ handleSignupSubmit = (event, body) => {
       case 'signUp':
         return <SignUpForm handleSignupSubmit={this.handleSignupSubmit}/>
       case 'logIn':
-        return <LogInForm />
+        return <LogInForm handleLoginSubmit={this.handleLoginSubmit}/>
       default:
         return null;
     }
