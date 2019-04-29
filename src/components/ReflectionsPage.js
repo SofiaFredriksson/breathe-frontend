@@ -6,6 +6,7 @@ const ReflectionsPage = (props) => {
   return (
     <div>
       <h1>{props.currentUser.first_name}'s Reflections</h1>
+      <div className="gridContainer">
       {props.currentUser.reflections.map(reflection =>
         {return(
         <div className="card" key={reflection.id}>
@@ -15,6 +16,7 @@ const ReflectionsPage = (props) => {
         <p>Mood score: {reflection.score}</p>
         </div>)}
       )}
+      </div>
     </div>
   )
 }
