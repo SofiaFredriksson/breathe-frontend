@@ -8,6 +8,7 @@ import ReflectionsPage from '../components/ReflectionsPage'
 import NavBar from './NavBar'
 import ActivityForm from '../components/ActivityForm'
 import SignUpForm from '../components/SignUpForm'
+import LogInForm from '../components/LogInForm'
 
 const ActivityAPI = 'http://localhost:3001/api/v1/activities'
 const CategoryAPI = 'http://localhost:3001/api/v1/categories'
@@ -26,23 +27,7 @@ class HomePage extends React.Component {
     currentUser: {}
   }
 
-handleCategoryClick = (event) => {
-  this.setState({
-    selectedCategory: this.state.categories.find(category => category.name === (event.target.value)),
-    clicked: 'category'
-  })
-}
-
-handleTimeSelect = (event) => {
-  const activ = this.state.selectedCategory.activities.filter(activity => activity.time === parseInt(event.target.value))
-  const num = Math.floor(Math.random() * (activ.length))
-  this.setState({
-    selectedTime: event.target.value,
-    clicked: 'activity',
-    suggestedActivity: activ[num]
-  })
-}
-
+//initial fetches, setting state for activities, categories and currentUser
 componentDidMount(){
   fetch(ActivityAPI)
   .then(resp => resp.json())
@@ -62,14 +47,39 @@ componentDidMount(){
     currentUser: data
   }))
 }
-
+ //click handler for 'done' with activity
 handleDoneClick = () => {
   this.setState({
     clicked: 'form'
   })
 }
 
+//click handlers for selecting category and time for suggested activity
+handleCategoryClick = (event) => {
+  this.setState({
+    selectedCategory: this.state.categories.find(category => category.name === (event.target.value)),
+    clicked: 'category'
+  })
+}
 
+handleTimeSelect = (event) => {
+  const activ = this.state.selectedCategory.activities.filter(activity => activity.time === parseInt(event.target.value))
+  const num = Math.floor(Math.random() * (activ.length))
+  this.setState({
+    selectedTime: event.target.value,
+    clicked: 'activity',
+    suggestedActivity: activ[num]
+  })
+}
+
+//nav button click handler
+handleNavClick = (value) => {
+  this.setState({
+    clicked: value
+  })
+}
+
+//Submit handlers for reflection, activity and user forms (sign up and login)
 handleActivitySubmit = (event, body) => {
   event.preventDefault()
   fetch(ActivityAPI, {
@@ -111,21 +121,13 @@ handleSignupSubmit = (event, body) => {
   .then(data => this.setState({
     clicked: 'home'
   }))
-
 }
 
-  handleReflectionClick = () => {
-    this.setState({
-      clicked: 'reflections'
-    })
-  }
+// handleLoginSubmit = (event, body) => {
+//
+// }
 
-  handleNavClick = (value) => {
-    this.setState({
-      clicked: value
-    })
-  }
-
+//conditionally render components
   renderContent = () => {
     switch(this.state.clicked) {
       case 'home':
@@ -142,6 +144,8 @@ handleSignupSubmit = (event, body) => {
         return <ActivityForm categories={this.state.categories} handleActivitySubmit={this.handleActivitySubmit}/>
       case 'signUp':
         return <SignUpForm handleSignupSubmit={this.handleSignupSubmit}/>
+      case 'logIn':
+        return <LogInForm />
       default:
         return null;
     }

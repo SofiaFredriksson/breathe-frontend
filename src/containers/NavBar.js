@@ -23,6 +23,10 @@ class NavBar extends React.Component {
           Sign Up
           </button>
 
+          <button onClick={() => this.props.handleNavClick('logIn')}>
+          Log In
+          </button>
+
 
       </div>
     )
