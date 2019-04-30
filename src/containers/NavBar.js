@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link, NavLink } from 'react-router-dom'
+
 import '../Nav.css'
 
 class NavBar extends React.Component {
@@ -8,25 +10,25 @@ class NavBar extends React.Component {
       <div className='navWrapper'>
         Breathe {this.props.currentUser.first_name} <br/>
 
-          <button onClick={() => this.props.handleNavClick('home')}>
+          <button><NavLink to='/'>
           Breathe
-          </button>
+          </NavLink></button>
 
-          <button onClick={() => this.props.handleNavClick('reflections')}>
+          <button><NavLink to='/reflections'>
           Reflections
-          </button>
+          </NavLink></button>
 
-          <button onClick={() => this.props.handleNavClick('newActivity')}>
+          <button><NavLink to='new_activity'>
           New
-          </button>
+          </NavLink></button>
 
-          <button onClick={() => this.props.handleNavClick('signUp')}>
+        <button><NavLink to='signUp'>
           Sign Up
-          </button>
+          </NavLink></button>
 
-          <button onClick={() => this.props.handleNavClick('logIn')}>
+          <button><NavLink to='logIn'>
           {this.props.currentUser.id ? "Log Out" : "Log In"}
-          </button>
+          </NavLink></button>
 
 
       </div>

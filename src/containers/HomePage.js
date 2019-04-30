@@ -212,6 +212,7 @@ setCurrentUser = (user) => {
       <Route path="/login" render={(routerProps) => <LogInForm {...routerProps} handleLoginSubmit={this.handleLoginSubmit} />}/>
       <Route path="/signup" render={(routerProps) => <SignUpForm handleSignupSubmit={this.handleSignupSubmit}/>}/>
       <Route path="/reflections" render={(routerProps) => <ReflectionsPage currentUser={this.state.currentUser} activities={this.state.activities}/>}/>
+      <Route path="/new_activity" render={(routerProps) => <ActivityForm categories={this.state.categories} handleActivitySubmit={this.handleActivitySubmit}/>}/>
       <Route exact path="" render={(routerProps) => <div>{this.renderContent()}</div>} />
       </Switch>
       </div>

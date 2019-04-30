@@ -25,7 +25,8 @@ class ActivityForm extends React.Component {
 
   render () {
     console.log(this.state);
-    return (
+
+    if(this.props.categories[0])return (
       <form onSubmit={(event) => this.props.handleActivitySubmit(event, this.state)}>
         <label>
         Category:
@@ -78,6 +79,12 @@ class ActivityForm extends React.Component {
         <input type='submit' value="Submit" />
 
       </form>
+      )
+
+      return (
+        <div>
+        <h1>BREATHE</h1>
+        </div>
     )
   }
 }
