@@ -6,6 +6,7 @@ class NavBar extends React.Component {
   render() {
     return(
       <div className='navWrapper'>
+        Breathe {this.props.currentUser.first_name} <br/>
 
           <button onClick={() => this.props.handleNavClick('home')}>
           Breathe
@@ -24,7 +25,7 @@ class NavBar extends React.Component {
           </button>
 
           <button onClick={() => this.props.handleNavClick('logIn')}>
-          Log In
+          {this.props.currentUser.id ? "Log Out" : "Log In"}
           </button>
 
 

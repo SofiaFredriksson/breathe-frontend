@@ -1,8 +1,9 @@
 import React from 'react'
 
 const CategoryButtons = (props) => {
-  return(
+  return(  
     <div>
+      <h1>BREATHE</h1>
       <button value='Social' onClick={(event) => props.handleCategoryClick(event)}>Social</button>
       <button value='Nourish' onClick={(event) => props.handleCategoryClick(event)}>Nourish</button>
       <button value='Sweat' onClick={(event) => props.handleCategoryClick(event)}>Sweat</button>
