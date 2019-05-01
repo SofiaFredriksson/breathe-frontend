@@ -9,8 +9,10 @@ import NavBar from './NavBar'
 import ActivityForm from '../components/ActivityForm'
 import SignUpForm from '../components/SignUpForm'
 import LogInForm from '../components/LogInForm'
+import LandingPage from '../components/LandingPage'
 
-import { Switch, Route } from 'react-router-dom'
+
+import { Switch, Route, withRouter } from 'react-router-dom'
 
 const ActivityAPI = 'http://localhost:3001/api/v1/activities'
 const CategoryAPI = 'http://localhost:3001/api/v1/categories'
@@ -26,7 +28,7 @@ class HomePage extends React.Component {
     activities: [],
     suggestedActivity: {},
     categories: [],
-    currentUser: {}
+    currentUser: null
   }
 
 //initial fetches, setting state for activities, categories and currentUser
@@ -85,12 +87,7 @@ handleTimeSelect = (event) => {
   })
 }
 
-//nav button click handler
-handleNavClick = (value) => {
-  this.setState({
-    clicked: value
-  })
-}
+
 
 //Submit handlers for reflection, activity and user forms (sign up and login)
 handleActivitySubmit = (event, body) => {
@@ -104,7 +101,7 @@ handleActivitySubmit = (event, body) => {
   .then(data => this.setState({
     clicked: 'home',
     activities: [...this.state.activities, data]
-  }))
+  }, () => {this.props.history.push('/breathe')}))
 }
 
 handleReflectionSubmit = (event, body) => {
@@ -118,8 +115,9 @@ handleReflectionSubmit = (event, body) => {
   .then(data =>
     this.setState({
       currentUser: {...this.state.currentUser,
-        reflections: [...this.state.currentUser.reflections, data]}
-    }))
+        reflections: [...this.state.currentUser.reflections, data]},
+      clicked: 'home'
+    }, () => {this.props.history.push('/reflections')}))
 }
 
 handleSignupSubmit = (event, body) => {
@@ -136,7 +134,7 @@ handleSignupSubmit = (event, body) => {
     }else{
       this.setCurrentUser(data)
     }
-  })
+  } )
 }
 
 
@@ -157,44 +155,36 @@ handleLoginSubmit = (event, body) => {
   })
 }
 
+homeNavClick = () => {
+  this.setState({
+    clicked: 'home'
+  }, this.props.history.push('/breathe') )
+}
+
 setCurrentUser = (user) => {
   this.setState({
     currentUser: user
-  }, () => {localStorage.setItem("user_id", this.state.currentUser.id)})
+  }, () => {
+    localStorage.setItem("user_id", this.state.currentUser.id)
+    this.props.history.push(this.props.location.pathname)
+  })
 }
 
-//conditionally render components
-  // renderContent = () => {
-  //   switch(this.state.clicked) {
-  //     case 'home':
-  //     return <CategoryButtons handleCategoryClick={this.handleCategoryClick}/>
-  //     case 'category':
-  //       return <TimeSelect selectedCategory={this.state.selectedCategory} handleTimeSelect={this.handleTimeSelect}/>;
-  //     case 'activity':
-  //       return <ActivityPage suggestedActivity={this.state.suggestedActivity} selectedTime={this.state.selectedTime} handleDoneClick={this.handleDoneClick}/>
-  //     case 'form':
-  //       return <ReflectionForm suggestedActivity={this.state.suggestedActivity} currentUser={this.state.currentUser} handleReflectionSubmit={this.handleReflectionSubmit}/>;
-  //     case 'reflections':
-  //       return <ReflectionsPage currentUser={this.state.currentUser} activities={this.state.activities}/>
-  //     case 'newActivity':
-  //       return <ActivityForm categories={this.state.categories} handleActivitySubmit={this.handleActivitySubmit}/>
-  //     case 'signUp':
-  //       return <SignUpForm handleSignupSubmit={this.handleSignupSubmit}/>
-  //     case 'logIn':
-  //       return <LogInForm handleLoginSubmit={this.handleLoginSubmit}/>
-  //     default:
-  //       return null;
-  //   }
-  // }
+logOut = () => {
+  localStorage.removeItem("user_id")
+  this.setState({
+    currentUser: {}
+  }, this.props.history.push('/'))
+}
 
   renderContent = () => {
     switch(this.state.clicked) {
       case 'home':
-        return <CategoryButtons handleCategoryClick={this.handleCategoryClick}/>
+        return <CategoryButtons handleCategoryClick={this.handleCategoryClick}/>;
       case 'category':
         return <TimeSelect selectedCategory={this.state.selectedCategory} handleTimeSelect={this.handleTimeSelect}/>;
       case 'activity':
-        return <ActivityPage suggestedActivity={this.state.suggestedActivity} selectedTime={this.state.selectedTime} handleDoneClick={this.handleDoneClick}/>
+        return <ActivityPage suggestedActivity={this.state.suggestedActivity} selectedTime={this.state.selectedTime} handleDoneClick={this.handleDoneClick}/>;
       case 'form':
         return <ReflectionForm suggestedActivity={this.state.suggestedActivity} currentUser={this.state.currentUser} handleReflectionSubmit={this.handleReflectionSubmit}/>;
      default:
@@ -204,21 +194,21 @@ setCurrentUser = (user) => {
 
 
   render() {
-    console.log(this.state);
+    console.log(this.state.currentUser);
     return(
-      <div>
-      <NavBar handleNavClick={this.handleNavClick} currentUser={this.state.currentUser}/>
+        <div>
+      <NavBar homeNavClick={this.homeNavClick} currentUser={this.state.currentUser} logOut={this.logOut}/>
       <Switch>
       <Route path="/login" render={(routerProps) => <LogInForm {...routerProps} handleLoginSubmit={this.handleLoginSubmit} />}/>
-      <Route path="/signup" render={(routerProps) => <SignUpForm handleSignupSubmit={this.handleSignupSubmit}/>}/>
+      <Route path="/signup" render={(routerProps) => <SignUpForm {...routerProps} handleSignupSubmit={this.handleSignupSubmit} /> }/>
       <Route path="/reflections" render={(routerProps) => <ReflectionsPage currentUser={this.state.currentUser} activities={this.state.activities}/>}/>
       <Route path="/new_activity" render={(routerProps) => <ActivityForm categories={this.state.categories} handleActivitySubmit={this.handleActivitySubmit}/>}/>
-      <Route exact path="" render={(routerProps) => <div>{this.renderContent()}</div>} />
+      <Route path="/breathe" render={(routerProps) => <div>{this.renderContent()}</div>} />
+      <Route path="" component={LandingPage}/>
       </Switch>
       </div>
+
     )
   }
 }
-// {this.renderContent()}
-      // <Route exact path="" component={CategoryButtons} />
-export default HomePage
+export default withRouter(HomePage)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import '../Nav.css'
 
@@ -7,33 +7,33 @@ class NavBar extends React.Component {
 
   render() {
     return(
-      <div className='navWrapper'>
-        Breathe {this.props.currentUser.first_name} <br/>
+      <React.Fragment>
+        {this.props.currentUser
+          ?
+          <div className='navWrapper'>
+        Breathe {this.props.currentUser.first_name}
+        <br/>
 
-          <button><NavLink to='/'>
+          <button onClick={this.props.homeNavClick}>Breathe</button>
+
+          <button onClick={() => this.props.history.push('/reflections')}>Reflections</button>
+
+          <button onClick={() => this.props.history.push('/new_activity')}>New</button>
+
+          <button onClick={() => {!this.props.currentUser ? this.props.history.push('/login') : this.props.logOut()}}>
+          {this.props.currentUser ? "Log Out" : "Log In"}
+          </button>
+          </div>
+          :
+          <div className='navWrapper'>
           Breathe
-          </NavLink></button>
+          </div>
 
-          <button><NavLink to='/reflections'>
-          Reflections
-          </NavLink></button>
+        }
+        </React.Fragment>
 
-          <button><NavLink to='new_activity'>
-          New
-          </NavLink></button>
-
-        <button><NavLink to='signUp'>
-          Sign Up
-          </NavLink></button>
-
-          <button><NavLink to='logIn'>
-          {this.props.currentUser.id ? "Log Out" : "Log In"}
-          </NavLink></button>
-
-
-      </div>
     )
   }
 }
 
-export default NavBar
+export default withRouter(NavBar)

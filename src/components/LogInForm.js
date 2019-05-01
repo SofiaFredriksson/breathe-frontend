@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { withRouter } from 'react-router-dom'
+
 class LogInForm extends React.Component {
   state = {
     username: '',
@@ -17,6 +19,9 @@ class LogInForm extends React.Component {
     console.log(this.state);
     return (
     <div>
+    <button onClick={() => this.props.history.push('/signup')}>Signup</button>
+    <br/>
+    <h1>Login</h1>
       <form onSubmit={(event) => this.props.handleLoginSubmit(event, this.state)}>
         <label>
           Username:
@@ -37,4 +42,4 @@ class LogInForm extends React.Component {
   }
 }
 
-export default LogInForm
+export default withRouter(LogInForm)
