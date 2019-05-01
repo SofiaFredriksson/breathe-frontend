@@ -28,23 +28,26 @@ class HomePage extends React.Component {
     activities: [],
     suggestedActivity: {},
     categories: [],
-    currentUser: null
+    currentUser: {}
   }
 
 //initial fetches, setting state for activities, categories and currentUser
 componentDidMount(){
+console.log('hello');
+  const token = localStorage.getItem("token")
+console.log(token);
 
-  const userId = localStorage.getItem("user_id")
-
-  if (userId){
+  if(token){
+    console.log(token)
     fetch("http://localhost:3001/api/v1/auto_login", {
-      headers: {"Authorization": userId}
+      headers: {"Authorization": token}
     })
     .then(resp => resp.json())
     .then(data => {
       if(data.error){
         alert(data.error)
       }else{
+        console.log(data)
         this.setCurrentUser(data)
       }
     })
@@ -132,7 +135,12 @@ handleSignupSubmit = (event, body) => {
     if(data.error){
       alert(data.error)
     }else{
-      this.setCurrentUser(data)
+      this.setState({
+        currentUser: data.user
+      }, () => {
+        localStorage.setItem("token", data.token)
+        this.props.history.push('/breathe')
+      })
     }
   } )
 }
@@ -150,7 +158,12 @@ handleLoginSubmit = (event, body) => {
     if(data.error){
       alert(data.error)
     }else{
-      this.setCurrentUser(data)
+      this.setState({
+        currentUser: data.user
+      }, () => {
+        localStorage.setItem("token", data.token)
+        this.props.history.push('/breathe')
+      })
     }
   })
 }
@@ -161,17 +174,14 @@ homeNavClick = () => {
   }, this.props.history.push('/breathe') )
 }
 
-setCurrentUser = (user) => {
+setCurrentUser = (response) => {
   this.setState({
-    currentUser: user
-  }, () => {
-    localStorage.setItem("user_id", this.state.currentUser.id)
-    this.props.history.push(this.props.location.pathname)
-  })
+    currentUser: response.user
+  }, () => this.props.history.push(this.props.location.pathname))
 }
 
 logOut = () => {
-  localStorage.removeItem("user_id")
+  localStorage.removeItem("token")
   this.setState({
     currentUser: {}
   }, this.props.history.push('/'))
