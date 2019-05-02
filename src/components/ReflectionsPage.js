@@ -13,7 +13,7 @@ const ReflectionsPage = (props) => {
       <h3>{props.activities.find(activity => activity.id === reflection.activity_id).title}</h3>
       <p>{reflection.content}</p>
       <br/>
-      <p>Mood score: {reflection.score}</p>
+      <p>Score: {reflection.score}</p>
       </div>)}
     )}
     </div>

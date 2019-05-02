@@ -10,6 +10,7 @@ import ActivityForm from '../components/ActivityForm'
 import SignUpForm from '../components/SignUpForm'
 import LogInForm from '../components/LogInForm'
 import LandingPage from '../components/LandingPage'
+import OtherNav from '../components/OtherNav'
 
 
 import { Switch, Route, withRouter } from 'react-router-dom'
@@ -206,18 +207,30 @@ logOut = () => {
   render() {
     console.log(this.state.currentUser);
     return(
-        <div>
-      <NavBar homeNavClick={this.homeNavClick} currentUser={this.state.currentUser} logOut={this.logOut}/>
-      <Switch>
-      <Route path="/login" render={(routerProps) => <LogInForm {...routerProps} handleLoginSubmit={this.handleLoginSubmit} />}/>
-      <Route path="/signup" render={(routerProps) => <SignUpForm {...routerProps} handleSignupSubmit={this.handleSignupSubmit} /> }/>
-      <Route path="/reflections" render={(routerProps) => <ReflectionsPage currentUser={this.state.currentUser} activities={this.state.activities}/>}/>
-      <Route path="/new_activity" render={(routerProps) => <ActivityForm categories={this.state.categories} handleActivitySubmit={this.handleActivitySubmit}/>}/>
-      <Route path="/breathe" render={(routerProps) => <div>{this.renderContent()}</div>} />
-      <Route path="" component={LandingPage}/>
-      </Switch>
-      </div>
-
+      <React.Fragment>
+        {(!this.state.currentUser.id)
+        ?
+          <div>
+          <OtherNav />
+          <Switch>
+          <Route path="/login" render={(routerProps) => <LogInForm {...routerProps} handleLoginSubmit={this.handleLoginSubmit} />}/>
+          <Route path="/signup" render={(routerProps) => <SignUpForm {...routerProps} handleSignupSubmit={this.handleSignupSubmit} /> }/>
+          <Route path="" component={LandingPage}/>
+          </Switch>
+          </div>
+        :
+          <div>
+            <NavBar homeNavClick={this.homeNavClick} currentUser={this.state.currentUser} logOut={this.logOut}/>
+            <Switch>
+            <Route path="/login" render={(routerProps) => <LogInForm {...routerProps} handleLoginSubmit={this.handleLoginSubmit} />}/>
+            <Route path="/signup" render={(routerProps) => <SignUpForm {...routerProps} handleSignupSubmit={this.handleSignupSubmit} /> }/>
+            <Route path="/reflections" render={(routerProps) => <ReflectionsPage currentUser={this.state.currentUser} activities={this.state.activities}/>}/>
+            <Route path="/new_activity" render={(routerProps) => <ActivityForm categories={this.state.categories} handleActivitySubmit={this.handleActivitySubmit}/>}/>
+            <Route path="/breathe" render={(routerProps) => <div>{this.renderContent()}</div>} />
+            </Switch>
+          </div>
+        }
+      </React.Fragment>
     )
   }
 }

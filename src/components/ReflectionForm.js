@@ -40,7 +40,7 @@ class ReflectionForm extends React.Component {
     </label>
     <br/><br/>
     <label>
-    Score your current mood:
+    Rate your activity:
     <br/>
     <select name="score" onChange={this.handleScoreChange}>
       <option value="">Choose a score</option>

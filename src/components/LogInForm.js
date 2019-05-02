@@ -19,8 +19,6 @@ class LogInForm extends React.Component {
     console.log(this.state);
     return (
     <div>
-    <button onClick={() => this.props.history.push('/signup')}>Signup</button>
-    <br/>
     <h1>Login</h1>
       <form onSubmit={(event) => this.props.handleLoginSubmit(event, this.state)}>
         <label>
@@ -32,7 +30,7 @@ class LogInForm extends React.Component {
         <label>
           Password:
           <br/>
-          <input type="text" value={this.state.password} name="password" onChange={this.handleChange} />
+          <input type="password" value={this.state.password} name="password" onChange={this.handleChange} />
         </label>
           <br/><br/>
         <input type="submit" value="Submit" />
