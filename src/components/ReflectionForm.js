@@ -29,9 +29,9 @@ class ReflectionForm extends React.Component {
     console.log(this.state.content);
     console.log(this.state.score);
   return(
-    <div>
+    <div className="form">
     <h1>Activity: {this.props.suggestedActivity.title}</h1>
-    <form className="reflectionForm" onSubmit={(event) => this.props.handleReflectionSubmit(event, this.state)}>
+    <form onSubmit={(event) => this.props.handleReflectionSubmit(event, this.state)}>
     <br/><br/>
     <label>
     Reflect on your activity:

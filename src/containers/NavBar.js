@@ -1,4 +1,7 @@
 import React from 'react'
+
+import logo from '../containers/logoSmall.png'
+
 import { withRouter } from 'react-router-dom'
 
 import '../Nav.css'
@@ -7,33 +10,23 @@ class NavBar extends React.Component {
 
   render() {
     return(
-      <React.Fragment>
-        {this.props.currentUser
-          ?
-          <div className='navWrapper'>
-        Breathe {this.props.currentUser.first_name}
-        <br/>
+      <div>
+        <ul>
+          <li onClick={this.props.homeNavClick}><img class="logo" src={logo} /></li>
 
-          <button onClick={this.props.homeNavClick}>Breathe</button>
+          <li onClick={() => this.props.history.push('/reflections')}>Reflections</li>
 
-          <button onClick={() => this.props.history.push('/reflections')}>Reflections</button>
+          <li onClick={() => this.props.history.push('/new_activity')}>New</li>
 
-          <button onClick={() => this.props.history.push('/new_activity')}>New</button>
-
-          <button onClick={() => {!this.props.currentUser ? this.props.history.push('/login') : this.props.logOut()}}>
-          {this.props.currentUser ? "Log Out" : "Log In"}
-          </button>
-          </div>
-          :
-          <div className='navWrapper'>
-          Breathe
-          </div>
-
-        }
-        </React.Fragment>
-
+          <li style={{float:"right"}} onClick={() => {!this.props.currentUser ? this.props.history.push('/login') : this.props.logOut()}}>
+            {this.props.currentUser ? "Log Out" : "Log In"}
+          </li>
+        </ul>
+      </div>
     )
   }
 }
 
 export default withRouter(NavBar)
+
+// Breathe {this.props.currentUser.first_name}

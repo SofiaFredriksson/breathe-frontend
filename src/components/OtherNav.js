@@ -11,7 +11,7 @@ class OtherNav extends React.Component {
           <div className='navWrapper'>
           Breathe
           </div>
-      
+
     )
   }
 }

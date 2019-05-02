@@ -27,13 +27,14 @@ class ActivityForm extends React.Component {
     console.log(this.state);
 
     if(this.props.categories[0])return (
+      <div className="form">
+      <h1>New Activity</h1>
       <form onSubmit={(event) => this.props.handleActivitySubmit(event, this.state)}>
         <label>
         Category:
         <br/>
         <select name="category" onChange={this.handleCategorySelect}>
-          <option value="">Choose a category</option>
-          <option value="Social">Social</option>
+          <option selected value="Social">Social</option>
           <option value="Nourish">Nourish</option>
           <option value="Sweat">Sweat</option>
           <option value="Nature">Nature</option>
@@ -63,8 +64,7 @@ class ActivityForm extends React.Component {
         Time (min):
         <br/>
           <select name="time" onChange={this.handleChange}>
-            <option value="">Choose a time</option>
-            <option value="3">3 minutes</option>
+            <option selected value="3">3 minutes</option>
             <option value="5">5 minutes</option>
             <option value="8">8 minutes</option>
             <option value="15">15 minutes</option>
@@ -79,6 +79,7 @@ class ActivityForm extends React.Component {
         <input type='submit' value="Submit" />
 
       </form>
+      </div>
       )
 
       return (

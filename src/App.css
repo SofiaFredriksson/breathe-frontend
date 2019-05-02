@@ -1,6 +1,18 @@
 .App {
   text-align: center;
   align-items: center;
-  color: purple;
+  color: #404040;
   justify-content: center;
+}
+
+button {
+  background-color: #Fcc0C5;
+  border: none;
+  color: #404040;
+  padding: 15px 32px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }

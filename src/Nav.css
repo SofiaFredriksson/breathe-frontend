@@ -1,9 +1,50 @@
+
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes');
+
+
 .navWrapper {
   height: 100px;
   width: 100%;
-  background-color: #FFC0CB;
+  background-color: #Fcc0C5;
   align-items: left;
   justify-content: left;
   text-align: left;
 
+}
+
+.logo {
+    display: inline-block;
+    vertical-align: top;
+    width: 70px;
+    height: 70px;
+    margin-right: 20px;
+    margin-top: 0px;
+}
+
+ul {
+  height: 100px;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #Fcc0C5;
+}
+
+li {
+  vertical-align: top;
+  margin-right: 20px;
+  height: 80px;
+  line-height: 80px;
+  float: left;
+  display: inline-block;
+  color: #404040;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li:hover {
+  background-color: #404040;
+  color: #Fcc0C5;
 }

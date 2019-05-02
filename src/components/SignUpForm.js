@@ -17,7 +17,7 @@ class SignUpForm extends React.Component {
   render() {
     console.log(this.state);
     return (
-    <div>
+    <div className="form">
       <form onSubmit={(event) => this.props.handleSignupSubmit(event, this.state)}>
         <label>
         First name:

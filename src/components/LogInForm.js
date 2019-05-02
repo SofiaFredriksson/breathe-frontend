@@ -18,7 +18,7 @@ class LogInForm extends React.Component {
   render() {
     console.log(this.state);
     return (
-    <div>
+    <div className="form">
     <h1>Login</h1>
       <form onSubmit={(event) => this.props.handleLoginSubmit(event, this.state)}>
         <label>
