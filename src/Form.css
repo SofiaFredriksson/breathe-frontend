@@ -53,6 +53,7 @@ input[type=submit]:hover {
 }
 
 .form {
+  color: #404040;
   margin-top: 100px;
   width: 40%;
   border-radius: 5px;
@@ -60,5 +61,6 @@ input[type=submit]:hover {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: #Fcc0C5;
+  background-color: rgba(255,255,255,0.75);
 }

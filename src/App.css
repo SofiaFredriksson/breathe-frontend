@@ -1,8 +1,13 @@
 .App {
   text-align: center;
   align-items: center;
-  color: #404040;
+  color: #Fcc0C5;
   justify-content: center;
+  background-image: url('./logo3.jpg');
+  height: 100vh;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
 }
 
 button {

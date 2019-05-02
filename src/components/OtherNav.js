@@ -9,7 +9,7 @@ class OtherNav extends React.Component {
     return(
 
           <div className='navWrapper'>
-          Breathe
+          
           </div>
 
     )
