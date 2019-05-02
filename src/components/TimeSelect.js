@@ -2,7 +2,8 @@ import React from 'react'
 
 const TimeSelect = (props) => {
   console.log('this is ' + props.selectedCategory.name);
-  return(
+    if(props.selectedCategory.id)
+    return (
     <div className="form">
     <h1>{props.selectedCategory.name}</h1>
     How much time do you have?
@@ -17,7 +18,11 @@ const TimeSelect = (props) => {
         <option value="30">30+ minutes</option>
 
       </select>
-
+    </div>
+  )
+  return(
+    <div>
+    BREATHE
     </div>
   )
 
