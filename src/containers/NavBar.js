@@ -12,7 +12,7 @@ class NavBar extends React.Component {
     return(
       <div>
         <ul>
-          <li onClick={this.props.homeNavClick}><img class="logo" src={logo} /></li>
+          <li onClick={this.props.homeNavClick}><img className="logo" src={logo} alt="logo"/></li>
 
           <li onClick={() => this.props.history.push('/reflections')}>Reflections</li>
 
@@ -28,5 +28,3 @@ class NavBar extends React.Component {
 }
 
 export default withRouter(NavBar)
-
-// Breathe {this.props.currentUser.first_name}

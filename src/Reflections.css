@@ -10,10 +10,24 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  background-image: url('./logo3.jpg');
+  height: 100%;
+  background-position: center; /* Center the image */
+  background-repeat: space; /* Do not repeat the image */
+  background-size: cover;
 }
 
 .gridContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
+}
+
+.reflection {
+  background-color: white;
+}
+
+.title {
+  font-size: 2em;
+  font-weight: bold; 
 }

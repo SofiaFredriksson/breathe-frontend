@@ -6,7 +6,7 @@
   background-image: url('./logo3.jpg');
   height: 100vh;
   background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
+  background-repeat: space; /* Do not repeat the image */
   background-size: cover;
 }
 
@@ -20,4 +20,5 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+
 }
