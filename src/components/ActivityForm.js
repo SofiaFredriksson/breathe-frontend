@@ -24,8 +24,6 @@ class ActivityForm extends React.Component {
   }
 
   render () {
-    console.log(this.state);
-
     if(this.props.categories[0])return (
       <div className="form">
       <h1>New Activity</h1>

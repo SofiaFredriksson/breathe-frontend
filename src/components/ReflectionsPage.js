@@ -26,10 +26,12 @@ class ReflectionsPage extends React.Component{
     })
   }
 
-
+  removeReflection = (reflection) => {
+    this.props.deleteClick(reflection.id)
+    this.setState({ reflections: this.state.reflections.filter(ref => ref.id !== reflection.id)})
+  }
 
   render() {
-    console.log(this.state.sortBy);
   if(this.props.currentUser.id && this.props.activities[0]) return (
     <div className="reflection">
     <div className="title">
@@ -52,6 +54,7 @@ class ReflectionsPage extends React.Component{
               <p>{reflection.content}</p>
               <br/>
               <p>Score: {reflection.score}</p>
+              <button onClick={() => this.removeReflection(reflection)} className="deleteBtn">Delete</button>
             </div>
           </div>)}
         )}

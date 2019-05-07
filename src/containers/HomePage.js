@@ -69,6 +69,12 @@ handleDoneClick = () => {
   })
 }
 
+handleBreatheClick = () => {
+  this.setState({
+    clicked: 'home'
+  })
+}
+
 //click handlers for selecting category and time for suggested activity
 handleCategoryClick = (event) => {
   this.setState({
@@ -145,7 +151,6 @@ handleSignupSubmit = (event, body) => {
 
 handleLoginSubmit = (event, body, formel) => {
   event.preventDefault()
-  console.log(body.username);
   fetch('http://localhost:3001/api/v1/login', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
@@ -165,6 +170,15 @@ handleLoginSubmit = (event, body, formel) => {
       })
     }
   })
+}
+
+deleteClick = (id) => {
+  fetch(`http://localhost:3001/api/v1/reflections/${id}`, {method: 'DELETE'})
+  .then(resp => resp.json())
+  .then(data => this.setState({
+    currentUser: {...this.state.currentUser,
+      reflections: [...this.state.currentUser.reflections.filter(ref => ref.id !== data.id)]},
+  }))
 }
 
 homeNavClick = () => {
@@ -194,7 +208,7 @@ logOut = () => {
       case 'category':
         return <TimeSelect selectedCategory={this.state.selectedCategory} handleTimeSelect={this.handleTimeSelect}/>;
       case 'activity':
-        return <ActivityPage suggestedActivity={this.state.suggestedActivity} selectedTime={this.state.selectedTime} handleDoneClick={this.handleDoneClick}/>;
+        return <ActivityPage suggestedActivity={this.state.suggestedActivity} selectedTime={this.state.selectedTime} handleDoneClick={this.handleDoneClick} handleBreatheClick={this.handleBreatheClick}/>;
       case 'form':
         return <ReflectionForm suggestedActivity={this.state.suggestedActivity} currentUser={this.state.currentUser} handleReflectionSubmit={this.handleReflectionSubmit}/>;
      default:
@@ -222,14 +236,14 @@ logOut = () => {
             <Switch>
             <Route path="/login" render={(routerProps) => <LogInForm {...routerProps} handleLoginSubmit={this.handleLoginSubmit} />}/>
             <Route path="/signup" render={(routerProps) => <SignUpForm {...routerProps} handleSignupSubmit={this.handleSignupSubmit} /> }/>
-            <Route path="/reflections" render={(routerProps) => <ReflectionsPage currentUser={this.state.currentUser} activities={this.state.activities}/>}/>
+            <Route path="/reflections" render={(routerProps) => <ReflectionsPage currentUser={this.state.currentUser} activities={this.state.activities} deleteClick={this.deleteClick}/>}/>
             <Route path="/new_activity" render={(routerProps) => <ActivityForm categories={this.state.categories} handleActivitySubmit={this.handleActivitySubmit}/>}/>
             <Route path="/breathe" render={(routerProps) => <div>{this.renderContent()}</div>} />
             </Switch>
           </div>
         }
 
-         <a  style={{position: 'absolute', bottom: '8px', left: '16px', backgroundColor: 'black', color: 'white', textDecoration: 'none', padding: '4px 6px', fontFamily: '-apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Ubuntu, Roboto, Noto, "Segoe UI", Arial, sans-serif', fontSize: '12px', fontWeight: 'bold', lineHeight: '1.2', display: 'inline-block', borderRadius: '3px'}} href="https://unsplash.com/@fabimoe?utm_medium=referral&utm_campaign=photographer-credit&utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Fabian Møller"><span style={{display: 'inline-block', padding: '2px 3px'}}><svg xmlns="http://www.w3.org/2000/svg" style={{height: '12px', width: 'auto', position: 'relative', verticalAlign: 'middle', top: '-2px', fill: 'white'}} viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z" /></svg></span><span style={{display: 'inline-block', padding: '2px 3px'}}>Fabian Møller</span></a>
+         <a  style={{position: 'fixed', bottom: '8px', right: '5px', backgroundColor: 'black', color: 'white', textDecoration: 'none', padding: '4px 6px', fontFamily: '-apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Ubuntu, Roboto, Noto, "Segoe UI", Arial, sans-serif', fontSize: '12px', fontWeight: 'bold', lineHeight: '1.2', display: 'inline-block', borderRadius: '3px'}} href="https://unsplash.com/@fabimoe?utm_medium=referral&utm_campaign=photographer-credit&utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Fabian Møller"><span style={{display: 'inline-block', padding: '2px 3px'}}><svg xmlns="http://www.w3.org/2000/svg" style={{height: '12px', width: 'auto', position: 'relative', verticalAlign: 'middle', top: '-2px', fill: 'white'}} viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z" /></svg></span><span style={{display: 'inline-block', padding: '2px 3px'}}>Fabian Møller</span></a>
       </React.Fragment>
     )
   }

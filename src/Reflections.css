@@ -20,7 +20,6 @@
 }
 
 .gridContainer {
-  /* margin-top: 200px; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
@@ -29,7 +28,6 @@
 .reflection {
   background-color: white;
   height: 100vh;
-
 }
 
 .title {
@@ -55,10 +53,7 @@
   top: '150px';
   margin-left: auto;
   margin-right: auto;
-
 }
-
-
 
 input[type=text] {
   width: 50%;
@@ -67,10 +62,7 @@ input[type=text] {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-
 }
-
-
 
 input[type=submit] {
   width: 50%;
@@ -88,14 +80,6 @@ input[type=submit]:hover {
   background-color: #C0C0C0;
 }
 
-/* select {
-  width: 25%;
-  padding: 16px 20px;
-  border: ;
-  border-radius: 4px;
-  background-color: white;
-} */
-
 .custom-select {
   position: relative;
   display: inline-block;
@@ -110,7 +94,19 @@ input[type=submit]:hover {
      width: 100%;
      border: none;
      box-shadow: none;
-     background: transparent;
+     background: #FFC0CB;
      /* background-image: none; */
      -webkit-appearance: none;
+}
+
+.deleteBtn {
+  background-color: #Fcc0C5;
+  border: none;
+  color: #404040;
+  padding: 5px 5px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }

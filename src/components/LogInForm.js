@@ -23,7 +23,6 @@ class LogInForm extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
     <div className="form">
     <h1>Login</h1>

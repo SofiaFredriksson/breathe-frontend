@@ -1,7 +1,6 @@
 import React from 'react'
 
 const TimeSelect = (props) => {
-  console.log('this is ' + props.selectedCategory.name);
     if(props.selectedCategory.id)
     return (
     <div className="form">
