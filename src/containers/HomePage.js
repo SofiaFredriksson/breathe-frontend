@@ -29,17 +29,14 @@ class HomePage extends React.Component {
     activities: [],
     suggestedActivity: {},
     categories: [],
-    currentUser: {}
+    currentUser: {},
+    searchTerm: 'better'
   }
 
 //initial fetches, setting state for activities, categories and currentUser
 componentDidMount(){
-console.log('hello');
   const token = localStorage.getItem("token")
-console.log(token);
-
   if(token){
-    console.log(token)
     fetch("http://localhost:3001/api/v1/auto_login", {
       headers: {"Authorization": token}
     })
@@ -48,7 +45,6 @@ console.log(token);
       if(data.error){
         alert(data.error)
       }else{
-        console.log(data)
         this.setCurrentUser(data)
       }
     })
@@ -147,8 +143,9 @@ handleSignupSubmit = (event, body) => {
 }
 
 
-handleLoginSubmit = (event, body) => {
+handleLoginSubmit = (event, body, formel) => {
   event.preventDefault()
+  console.log(body.username);
   fetch('http://localhost:3001/api/v1/login', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
@@ -158,6 +155,7 @@ handleLoginSubmit = (event, body) => {
   .then(data =>{
     if(data.error){
       alert(data.error)
+      formel()
     }else{
       this.setState({
         currentUser: data.user
@@ -206,7 +204,6 @@ logOut = () => {
 
 
   render() {
-    console.log(this.state.currentUser);
     return(
       <React.Fragment>
         {(!this.state.currentUser.id)

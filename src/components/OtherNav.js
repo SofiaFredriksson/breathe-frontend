@@ -9,7 +9,12 @@ class OtherNav extends React.Component {
     return(
 
           <div className='navWrapper'>
-          
+            <ul>
+              <li style={{float:"right"}} onClick={() => {this.props.location.pathname === "/signup" ? this.props.history.push('/login') : this.props.history.push('/signup')}}>
+                {this.props.location.pathname === "/signup" ? "Log In" : "Sign Up"}
+              </li>
+            </ul>
+
           </div>
 
     )

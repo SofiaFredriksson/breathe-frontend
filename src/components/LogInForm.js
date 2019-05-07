@@ -1,4 +1,5 @@
 import React from 'react'
+import '../Form.css'
 
 import { withRouter } from 'react-router-dom'
 
@@ -14,13 +15,19 @@ class LogInForm extends React.Component {
     })
   }
 
+  emptyInputs = (event) => {
+    this.setState({
+      username: '',
+      password: ''
+    })
+  }
 
   render() {
     console.log(this.state);
     return (
     <div className="form">
     <h1>Login</h1>
-      <form onSubmit={(event) => this.props.handleLoginSubmit(event, this.state)}>
+      <form onSubmit={(event) => this.props.handleLoginSubmit(event, this.state, this.emptyInputs)}>
         <label>
           Username:
           <br/>

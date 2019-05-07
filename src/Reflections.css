@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Tangerine');
+
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -18,6 +20,7 @@
 }
 
 .gridContainer {
+  /* margin-top: 200px; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
@@ -28,6 +31,66 @@
 }
 
 .title {
-  font-size: 2em;
-  font-weight: bold; 
+  font-size: 4em;
+  font-weight: bold;
+  font-family: 'Tangerine', cursive;
+  color: #404040;
+}
+
+.innerCard {
+  background-color: #Fcc0C5;
+  background-color: rgba(255,255,255,0.75);
+  color: #404040;
+}
+
+.searchForm {
+  color: #404040;
+  width: 90%;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: rgba(255,192,203,0.5);
+  position: 'absolute';
+  top: '150px';
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+
+input[type=text] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 3px 3px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+}
+
+
+
+input[type=submit] {
+  width: 50%;
+  background-color: #FFC0CB;
+  color: #404040;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+input[type=submit]:hover {
+  background-color: #C0C0C0;
+}
+
+select {
+  width: 25%;
+  padding: 16px 20px;
+  border: ;
+  border-radius: 4px;
+  background-color: white;
+
 }
