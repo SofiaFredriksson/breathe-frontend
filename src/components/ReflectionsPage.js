@@ -41,29 +41,10 @@ class ReflectionsPage extends React.Component{
       <input onChange={this.handleChange} name="searchTerm" type="text" placeholder="Search your reflections..."></input>
       <input type="submit" value="Submit"/>
       </form>
-
-      <form className="filter">
-      <label>
-        <input type="radio" value="nourish" checked={null} onChange={this.handleRadioChange}/>
-        Nourish
-      </label>
-      <label>
-        <input type="radio" value="sweat" checked={null} onChange={this.handleRadioChange}/>
-        Sweat
-      </label>
-      <label>
-        <input type="radio" value="nature" checked={null} onChange={this.handleRadioChange}/>
-        Nature
-      </label>
-      <label>
-        <input type="radio" value="social" checked={null} onChange={this.handleRadioChange}/>
-        Social
-      </label>
-      </form>
     </div>
 
       <div className="gridContainer">
-        {this.filterSearches().map(reflection =>
+        {this.filterSearches().reverse().map(reflection =>
           {return(
           <div className="card" key={reflection.id}>
             <div className="innerCard">
@@ -86,3 +67,24 @@ class ReflectionsPage extends React.Component{
 }
 
 export default ReflectionsPage
+
+
+
+// <form className="filter">
+// <label>
+//   <input type="radio" value="nourish" checked={null} onChange={this.handleRadioChange}/>
+//   Nourish
+// </label>
+// <label>
+//   <input type="radio" value="sweat" checked={null} onChange={this.handleRadioChange}/>
+//   Sweat
+// </label>
+// <label>
+//   <input type="radio" value="nature" checked={null} onChange={this.handleRadioChange}/>
+//   Nature
+// </label>
+// <label>
+//   <input type="radio" value="social" checked={null} onChange={this.handleRadioChange}/>
+//   Social
+// </label>
+// </form>
