@@ -33,13 +33,15 @@ class ActivityForm extends React.Component {
         <label>
         Category:
         <br/>
+        <div className="custom-select">
         <select name="category" onChange={this.handleCategorySelect}>
-          <option selected value="Social">Social</option>
+          <option>Choose a category</option>
+          <option value="Social">Social</option>
           <option value="Nourish">Nourish</option>
           <option value="Sweat">Sweat</option>
           <option value="Nature">Nature</option>
         </select>
-
+        </div>
         </label>
 
         <br/><br/>
@@ -63,8 +65,10 @@ class ActivityForm extends React.Component {
         <label>
         Time (min):
         <br/>
+        <div className="custom-select">
           <select name="time" onChange={this.handleChange}>
-            <option selected value="3">3 minutes</option>
+            <option>Choose a time</option>
+            <option value="3">3 minutes</option>
             <option value="5">5 minutes</option>
             <option value="8">8 minutes</option>
             <option value="15">15 minutes</option>
@@ -72,6 +76,7 @@ class ActivityForm extends React.Component {
             <option value="30">30+ minutes</option>
 
           </select>
+          </div>
         </label>
 
         <br/><br/>

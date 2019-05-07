@@ -42,8 +42,9 @@ class ReflectionForm extends React.Component {
     <label>
     Rate your activity:
     <br/>
+    <div className="custom-select">
     <select name="score" onChange={this.handleScoreChange}>
-      <option value="">Choose a score</option>
+      <option>Choose a score</option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -55,6 +56,7 @@ class ReflectionForm extends React.Component {
       <option value="9">9</option>
       <option value="10">10</option>
     </select>
+    </div>
     </label>
     <br/><br/>
     <input type="submit" value="Submit" />

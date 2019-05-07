@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../Form.css'
 class SignUpForm extends React.Component {
   state = {
     username: '',

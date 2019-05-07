@@ -28,6 +28,8 @@
 
 .reflection {
   background-color: white;
+  height: 100vh;
+
 }
 
 .title {
@@ -86,11 +88,29 @@ input[type=submit]:hover {
   background-color: #C0C0C0;
 }
 
-select {
+/* select {
   width: 25%;
   padding: 16px 20px;
   border: ;
   border-radius: 4px;
   background-color: white;
+} */
 
+.custom-select {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 200px;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.custom-select select {
+  padding: 5px 8px;
+     width: 100%;
+     border: none;
+     box-shadow: none;
+     background: transparent;
+     /* background-image: none; */
+     -webkit-appearance: none;
 }

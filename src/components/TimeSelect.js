@@ -8,8 +8,9 @@ const TimeSelect = (props) => {
     <h1>{props.selectedCategory.name}</h1>
     How much time do you have?
     <br/>
+    <div className="custom-select">
       <select onChange={(event) => props.handleTimeSelect(event)}>
-        <option value="">Choose a time</option>
+        <option>Choose a time</option>
         <option value="3">3 minutes</option>
         <option value="5">5 minutes</option>
         <option value="8">8 minutes</option>
@@ -18,6 +19,7 @@ const TimeSelect = (props) => {
         <option value="30">30+ minutes</option>
 
       </select>
+      </div>
     </div>
   )
   return(
