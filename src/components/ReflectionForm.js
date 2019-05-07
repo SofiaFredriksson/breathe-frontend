@@ -26,8 +26,6 @@ class ReflectionForm extends React.Component {
   }
 
   render() {
-    console.log(this.state.content);
-    console.log(this.state.score);
   return(
     <div className="form">
     <h1>Activity: {this.props.suggestedActivity.title}</h1>
