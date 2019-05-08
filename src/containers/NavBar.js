@@ -10,7 +10,7 @@ class NavBar extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="navWrapper">
         <ul>
           <li onClick={this.props.homeNavClick}><img className="logo" src={logo} alt="logo"/></li>
 

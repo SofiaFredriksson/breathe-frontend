@@ -6,6 +6,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./logo3.jpg');
+  height: 100vh;
+  background-position: center; /* Center the image */
+  background-repeat: space; /* Do not repeat the image */
+  background-size: cover;
 }
 
 code {

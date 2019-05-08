@@ -41,11 +41,14 @@ class ReflectionsPage extends React.Component{
 
       <form className="search">
       <input onChange={this.handleChange} name="searchTerm" type="text" placeholder="Search your reflections..."></input>
-      <input type="submit" value="Submit"/>
       </form>
     </div>
 
       <div className="gridContainer">
+      <div className="analyticsCard">
+        <h2>{this.props.currentUser.total_activity_time} minutes</h2>
+        <h2>{this.props.currentUser.reflection_count} breaths</h2>
+      </div>
         {this.filterSearches().reverse().map(reflection =>
           {return(
           <div className="card" key={reflection.id}>

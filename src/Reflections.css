@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Tangerine');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -19,9 +19,21 @@
   background-size: cover;
 }
 
+.analyticsCard {
+  border-radius: 50%;
+  background-image: url('./pic.png');
+  height: 200px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  color: #404040;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+}
+
 .gridContainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
 }
 
@@ -33,7 +45,7 @@
 .title {
   font-size: 4em;
   font-weight: bold;
-  font-family: 'Tangerine', cursive;
+  font-family: 'Pacifico', cursive;
   color: #404040;
 }
 
@@ -53,6 +65,7 @@
   top: '150px';
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 input[type=text] {
@@ -73,7 +86,7 @@ input[type=submit] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 input[type=submit]:hover {
@@ -86,7 +99,7 @@ input[type=submit]:hover {
   vertical-align: middle;
   width: 200px;
   border-radius: 3px;
-  border: 1px solid black;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .custom-select select {
