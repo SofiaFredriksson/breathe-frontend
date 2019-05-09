@@ -46,8 +46,10 @@ class ReflectionsPage extends React.Component{
 
       <div className="gridContainer">
       <div className="analyticsCard">
-        <h2>{this.props.currentUser.total_activity_time} minutes</h2>
-        <h2>{this.props.currentUser.reflection_count} breaths</h2>
+        <div className="analyticsContent">
+          <h2>{this.props.currentUser.total_activity_time} Minutes</h2>
+          <h2>{this.props.currentUser.reflection_count} Breaths</h2>
+        </div>
       </div>
         {this.filterSearches().reverse().map(reflection =>
           {return(

@@ -124,6 +124,7 @@ handleReflectionSubmit = (event, body) => {
         reflections: [...this.state.currentUser.reflections, data]},
       clicked: 'home'
     }, () => {this.props.history.push('/reflections')}))
+  .catch(error => alert('Error:', error));
 }
 
 handleSignupSubmit = (event, body) => {
